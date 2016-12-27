@@ -3,8 +3,11 @@ package com.restdev.service;
 import java.net.URISyntaxException;
 
 import javax.json.JsonObject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -23,6 +26,7 @@ import com.restdev.exception.DeveloperException;
  */
 @Path("developer")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 public interface DeveloperService {
 
 	/**
@@ -31,7 +35,9 @@ public interface DeveloperService {
 	 * @param developer
 	 * @return
 	 */
-	Response add(Developer developer);
+	@POST
+	@Path("add/{developer}")
+	Response add(@PathParam("developer")Developer developer);
 
 	/**
 	 * Update Developer
@@ -39,6 +45,8 @@ public interface DeveloperService {
 	 * @param developer
 	 * @return
 	 */
+	@PUT
+	@Path("update")
 	Response update(Developer developer);
 
 	/**
@@ -46,13 +54,15 @@ public interface DeveloperService {
 	 * 
 	 * @param developer
 	 */
+	@DELETE
+	@Path("delete")
 	Response delete(Developer developer);
 
 	/**
 	 * Delete developer
 	 * 
 	 * @param developer
-	 * @throws DeveloperException 
+	 * @throws DeveloperException
 	 */
 	@DELETE
 	@Path("delete/{id}")
@@ -63,6 +73,8 @@ public interface DeveloperService {
 	 * 
 	 * @return
 	 */
+	@GET
+	@Path("all")
 	Response getAllDeveloper();
 
 	/**
@@ -85,7 +97,7 @@ public interface DeveloperService {
 	JsonObject getDeveloperName(@Context HttpHeaders http);
 
 	/**
-	 * getDeveloper
+	 * Get Developer
 	 * 
 	 * @param first
 	 * @param last
@@ -93,6 +105,16 @@ public interface DeveloperService {
 	 */
 	@Path("{first}-{last}")
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
 	Response getDeveloper(@PathParam("first") String first, @PathParam("last") String last);
+
+	/**
+	 * Get Developer By Id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Path("id/{id}")
+	@GET
+	Response getDeveloperById(@PathParam("id") Long id);
+
 }

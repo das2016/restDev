@@ -18,4 +18,22 @@ public class JAXRSConfiguration extends Application {
 
 	}
 
+	// /*
+	// * (non-Javadoc)
+	// *
+	// * @see javax.ws.rs.core.Application#getClasses()
+	// */
+	// @Override
+	// public Set<Class<?>> getClasses() {
+	// final Set<Class<?>> classes = new HashSet<Class<?>>();
+	// // Features.
+	// classes.add(JacksonFeature.class);
+	// // Providers.
+	// classes.add(JacksonJsonParamConverterProvider.class);
+	// classes.add(ObjectMapperContextResolver.class);
+	// // Resources.
+	// classes.add(DeveloperServiceImpl.class);
+	// return classes;
+	// }
+
 }
