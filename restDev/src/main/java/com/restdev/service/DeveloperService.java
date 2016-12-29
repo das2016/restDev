@@ -26,7 +26,7 @@ import com.restdev.exception.DeveloperException;
  */
 @Path("developer")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+@Consumes(MediaType.APPLICATION_JSON)
 public interface DeveloperService {
 
 	/**
@@ -37,7 +37,7 @@ public interface DeveloperService {
 	 */
 	@POST
 	@Path("add/{developer}")
-	Response add(@PathParam("developer")Developer developer);
+	Response add(@PathParam("developer") Developer developer);
 
 	/**
 	 * Update Developer
@@ -46,8 +46,8 @@ public interface DeveloperService {
 	 * @return
 	 */
 	@PUT
-	@Path("update")
-	Response update(Developer developer);
+	@Path("update/{developer}")
+	Response update(@PathParam("developer") Developer developer);
 
 	/**
 	 * Delete developer
@@ -55,8 +55,8 @@ public interface DeveloperService {
 	 * @param developer
 	 */
 	@DELETE
-	@Path("delete")
-	Response delete(Developer developer);
+	@Path("delete/{developer}")
+	Response delete(@PathParam("developer") Developer developer);
 
 	/**
 	 * Delete developer
@@ -65,7 +65,7 @@ public interface DeveloperService {
 	 * @throws DeveloperException
 	 */
 	@DELETE
-	@Path("delete/{id}")
+	@Path("delete/id/{id}")
 	Response delete(@PathParam("id") Long id) throws URISyntaxException, DeveloperException;
 
 	/**
