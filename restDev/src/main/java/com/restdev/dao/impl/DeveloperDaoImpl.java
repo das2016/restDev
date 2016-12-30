@@ -31,10 +31,12 @@ public class DeveloperDaoImpl implements DeveloperDao {
 	try {
 	    CassandraConfiguration.connect(CassandraConfiguration.HOST, CassandraConfiguration.CLUSTER,
 		    CassandraConfiguration.PORT);
-	    CassandraConfiguration.getSession()
-		    .execute("INSERT INTO Developer (ID, NOM, PRENOM, DATE_RECRUTEMENT)" + "VALUES ('"
-			    + developer.getId() + "','" + developer.getNom() + "','" + developer.getPrenom() + "','"
-			    + DateUtil.dateToString(developer.getDateRecrutement()) + "');");
+	     CassandraConfiguration.getSession()
+	     .execute("INSERT INTO Developer (ID, NOM, PRENOM, DATE_RECRUTEMENT)" + "VALUES ("
+	     + developer.getId() + ",'" + developer.getNom() + "','" +
+	     developer.getPrenom() + "','"+ DateUtil.dateToString(developer.getDateRecrutement()) + "');");
+//	    CassandraConfiguration.getSession().execute(
+//		    "INSERT INTO Developer ( ID, NOM, PRENOM, DATE_RECRUTEMENT) VALUES ( 3, 'bibo', 'levrai','2014-10-20 12:10');");
 	} catch (Exception e) {
 	    LOGGER.error(" Exception is thrown in add developer : " + e.getMessage());
 	} finally {
